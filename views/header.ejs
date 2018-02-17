@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Potatoe list</title>
+        <link rel= "stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type= "text/css">
+    </head>
+    <body class= "container">
+		<h1>
+            <% if(title == "login" || title == "sign-up"){ %>
+                    Login or signup to make a list!
+            <%    }
+                else{ %>
+                    <%= username %>'s list!
+            <a href= "/logout" class= "btn btn-primary pull-right" style = "margin-left: 10px">Logout</a>
+			<a href= "/new-entry" class= "btn btn-primary pull-right">Add a food to library</a>
+                <% } %>
+			
+		</h1>

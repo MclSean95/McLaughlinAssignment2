@@ -1,0 +1,19 @@
+<% include header %>
+    <% var i = 1 %>
+    <%= username %>'s list of favorite ways to cook potatoes!<br/>
+    <% if(food.length){ %>
+		<% food.forEach(function(food){ %>
+            <ol>
+            <div class= "text-muted pull-right">
+					<%= food.published %>
+				</div>
+				 <%= i + ". " + food.title %>
+                </ol>	
+		</div>
+        
+		<%i++ }) %>
+	<% } else { %>
+	No entries! <a href= "/new-entry">Add a food!</a>
+	<% } %>
+    
+<% include footer %>
