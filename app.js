@@ -78,7 +78,7 @@ app.get("/", ensureAuthenticated, function(req, res){
 		
 		var dbObj = db.db("Users");
 		
-		dbObj.collection("foods").find().toArray(function(err, results){
+		dbObj.collection("foods").find({name: req.user.username}).toArray(function(err, results){
 			console.log("Site served");
 			db.close();
 			res.render("index",{food:results, title: "index", username: req.user.username});
@@ -109,8 +109,11 @@ app.post("/new-entry", function(req, response){
 		if(err) throw err;
 		
 		var dbObj = db.db("Users");
-		
-		dbObj.collection("foods").save(req.body, function(err, result){
+		var data = {
+            body: req.body.title,
+            name: req.user.username
+        }
+		dbObj.collection("foods").save(data, function(err, result){
 			console.log("Data saved");
 			db.close();
 			response.redirect("/");
@@ -134,7 +137,7 @@ app.post("/sign-up", function(request, response){
 			if(err) throw err;
 			
 			request.login(request.body, function(){
-			response.redirect("/login");
+			response.redirect("/");
 			});
 		});
 	});
